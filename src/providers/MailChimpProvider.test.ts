@@ -30,4 +30,14 @@ describe("MailChimpProvider", () => {
       expect(response!._links).toBeUndefined();
     });
   });
+
+  describe("#deleteMe", () => {
+    it("deletes me", async () => {
+      const email = "newsletter@bartholomae.name";
+      await mailChimpProvider.trackEmail(email);
+      await mailChimpProvider.deleteMe(email);
+      const response = await mailChimpProvider.fetchDetails(email);
+      expect(response).toBe(null);
+    });
+  });
 });

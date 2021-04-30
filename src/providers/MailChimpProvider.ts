@@ -38,7 +38,18 @@ export class MailChimpProvider implements Provider {
     });
   }
 
-  deleteMe(email: string): Promise<void> {
-    throw new TypeError("Not implemented yet");
+  async deleteMe(email: string): Promise<void> {
+    const me = await this.fetchDetails(email);
+    if (me === null) {
+      return;
+    }
+    const { list_id, id } = me;
+    await this.instance.post(
+      `/lists/${list_id}/members/${id}/actions/delete-permanent`,
+      {
+        members: [{ email_address: email, status: "unsubscribed" }],
+        update_existing: true,
+      }
+    );
   }
 }
