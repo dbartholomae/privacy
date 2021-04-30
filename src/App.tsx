@@ -3,6 +3,7 @@ import React from "react";
 import { TrackingView } from "./TrackingView/TrackingView";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { InquiryView } from "./InquiryView/InquiryView";
+import { DeletionView } from "./DeletionView/DeletionView";
 
 export function App() {
   return (
@@ -12,6 +13,9 @@ export function App() {
       </Route>
       <Route path="/inquiry">
         <InquiryView />
+      </Route>
+      <Route path="/delete-me">
+        <DeletionView />
       </Route>
       <Redirect to="/track-me" />
     </Switch>

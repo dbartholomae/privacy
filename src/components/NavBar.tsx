@@ -11,6 +11,9 @@ export const NavBar: FunctionComponent = () => (
       <Button color="inherit" component={Link} to="/inquiry">
         Inquire
       </Button>
+      <Button color="inherit" component={Link} to="/delete-me">
+        Delete me
+      </Button>
     </Toolbar>
   </AppBar>
 );
