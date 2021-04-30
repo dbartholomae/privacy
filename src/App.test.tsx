@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { App } from "./App";
 import { enterEmail } from "./EmailForm.po";
 import { providersContext } from "./providers/providersContext";
 import { MockProvider } from "./providers/MockProvider";

@@ -4,7 +4,7 @@ import { Container, Typography } from "@material-ui/core";
 import { EmailForm } from "./EmailForm";
 import { providersContext } from "./providers/providersContext";
 
-function App() {
+export function App() {
   const providers = useContext(providersContext);
   function setEmail(email: string) {
     providers.forEach((provider) => provider.trackEmail(email));
@@ -18,5 +18,3 @@ function App() {
     </Container>
   );
 }
-
-export default App;
