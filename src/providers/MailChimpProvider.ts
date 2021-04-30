@@ -37,4 +37,8 @@ export class MailChimpProvider implements Provider {
       update_existing: true,
     });
   }
+
+  deleteMe(email: string): Promise<void> {
+    throw new TypeError("Not implemented yet");
+  }
 }
