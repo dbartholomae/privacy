@@ -1,21 +1,19 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { providersContext } from "./providers/providersContext";
 import { MockProvider } from "./providers/MockProvider";
 import { Provider } from "./providers/Provider";
 import { InquiryView } from "./InquiryView";
 import { enterEmail } from "./EmailForm.po";
+import { createTestProvider } from "./createTestProvider";
 
 describe("InquiryView", () => {
   let mockProvider: Provider;
 
   beforeEach(() => {
     mockProvider = new MockProvider();
-    render(
-      <providersContext.Provider value={[mockProvider]}>
-        <InquiryView />
-      </providersContext.Provider>
-    );
+    render(<InquiryView />, {
+      wrapper: createTestProvider({ providers: [mockProvider] }),
+    });
   });
 
   describe("when I enter my email", () => {

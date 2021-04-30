@@ -1,21 +1,19 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { enterEmail } from "./EmailForm.po";
-import { providersContext } from "./providers/providersContext";
 import { MockProvider } from "./providers/MockProvider";
 import { Provider } from "./providers/Provider";
 import { TrackingView } from "./TrackingView";
+import { createTestProvider } from "./createTestProvider";
 
 describe("TrackingView", () => {
   let mockProvider: Provider;
 
   beforeEach(() => {
     mockProvider = new MockProvider();
-    render(
-      <providersContext.Provider value={[mockProvider]}>
-        <TrackingView />
-      </providersContext.Provider>
-    );
+    render(<TrackingView />, {
+      wrapper: createTestProvider({ providers: [mockProvider] }),
+    });
   });
 
   it("shows a title", () => {

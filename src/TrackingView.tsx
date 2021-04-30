@@ -1,7 +1,8 @@
-import { Container, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { EmailForm } from "./EmailForm";
 import React, { useContext } from "react";
 import { providersContext } from "./providers/providersContext";
+import { Page } from "./Page";
 
 export function TrackingView() {
   const providers = useContext(providersContext);
@@ -9,11 +10,11 @@ export function TrackingView() {
     providers.forEach((provider) => provider.trackEmail(email));
   }
   return (
-    <Container>
+    <Page>
       <Typography variant="h2" gutterBottom>
         Data collection
       </Typography>
       <EmailForm onSetEmail={trackEmail} />
-    </Container>
+    </Page>
   );
 }
