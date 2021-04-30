@@ -1,6 +1,7 @@
 import "fontsource-roboto";
 import React from "react";
-import { Button, Container, TextField, Typography } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
+import { EmailForm } from "./EmailForm";
 
 function App() {
   return (
@@ -8,12 +9,7 @@ function App() {
       <Typography variant="h2" gutterBottom>
         Data collection
       </Typography>
-      <form style={{ display: "flex", gap: "4px" }}>
-        <TextField id="email" label="Email" />
-        <Button variant="contained" color="primary">
-          Sign up
-        </Button>
-      </form>
+      <EmailForm />
     </Container>
   );
 }
