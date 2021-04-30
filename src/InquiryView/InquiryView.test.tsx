@@ -35,4 +35,18 @@ describe("InquiryView", () => {
       ).toBeInTheDocument();
     });
   });
+
+  describe("when I enter an email without data", () => {
+    const email = "test@test.com";
+    beforeEach(() => {
+      ((mockProvider.fetchDetails as unknown) as jest.MockedFunction<any>).mockResolvedValue(
+        null
+      );
+      enterEmail(email);
+    });
+
+    it("shows the data collected about me", async () => {
+      expect(await screen.findByText("No data")).toBeInTheDocument();
+    });
+  });
 });
