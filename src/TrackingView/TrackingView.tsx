@@ -1,8 +1,8 @@
 import { Typography } from "@material-ui/core";
-import { EmailForm } from "./EmailForm";
+import { EmailForm } from "../components/EmailForm/EmailForm";
 import React, { useContext } from "react";
-import { providersContext } from "./providers/providersContext";
-import { Page } from "./Page";
+import { providersContext } from "../providers/providersContext";
+import { Page } from "../components/Page";
 
 export function TrackingView() {
   const providers = useContext(providersContext);

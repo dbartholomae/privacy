@@ -1,8 +1,8 @@
 import "fontsource-roboto";
 import React from "react";
-import { TrackingView } from "./TrackingView";
+import { TrackingView } from "./TrackingView/TrackingView";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { InquiryView } from "./InquiryView";
+import { InquiryView } from "./InquiryView/InquiryView";
 
 export function App() {
   return (

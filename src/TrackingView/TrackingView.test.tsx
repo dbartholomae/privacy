@@ -1,10 +1,10 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { enterEmail } from "./EmailForm.po";
-import { MockProvider } from "./providers/MockProvider";
-import { Provider } from "./providers/Provider";
+import { enterEmail } from "../components/EmailForm/EmailForm.po";
+import { MockProvider } from "../providers/MockProvider";
+import { Provider } from "../providers/Provider";
 import { TrackingView } from "./TrackingView";
-import { createTestProvider } from "./createTestProvider";
+import { createTestProvider } from "../createTestProvider";
 
 describe("TrackingView", () => {
   let mockProvider: Provider;
