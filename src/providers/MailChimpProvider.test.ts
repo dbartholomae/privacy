@@ -4,7 +4,8 @@ describe("MailChimpProvider", () => {
   let mailChimpProvider: MailChimpProvider;
   beforeEach(() => {
     mailChimpProvider = new MailChimpProvider(
-      process.env.REACT_APP_MAILCHIMP_API_KEY!
+      process.env.REACT_APP_MAILCHIMP_API_KEY!,
+      process.env.REACT_APP_CORS_PROXY!
     );
   });
 

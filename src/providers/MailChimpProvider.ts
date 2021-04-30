@@ -1,25 +1,33 @@
 import { Provider } from "./Provider";
-import Mailchimp from "mailchimp-api-v3";
+import axios, { AxiosInstance } from "axios";
 
 export class MailChimpProvider implements Provider {
   name = "MailChimp";
-  private mailchimp: Mailchimp;
 
-  constructor(apiKey: string) {
-    this.mailchimp = new Mailchimp(apiKey);
+  private instance: AxiosInstance;
+
+  constructor(apiKey: string, corsProxy: string = "") {
+    const dataCenterRegex = /-(.+)$/g;
+    const dataCenter = dataCenterRegex.exec(apiKey)![1];
+    this.instance = axios.create({
+      baseURL: `${corsProxy}https://${dataCenter}.api.mailchimp.com/3.0`,
+      timeout: 5000,
+      auth: {
+        username: "anystring",
+        password: apiKey,
+      },
+    });
   }
 
   async fetchDetails(email: string): Promise<Record<string, string> | null> {
-    const response = await this.mailchimp.get({
-      path: `/search-members?query=${email}`,
-    });
-    return response.exact_matches.members[0] ?? null;
+    const response = await this.instance.get(`/search-members?query=${email}`);
+    return response.data.exact_matches.members[0] ?? null;
   }
 
   async trackEmail(email: string): Promise<void> {
-    const response = await this.mailchimp.get("/lists");
-    const listId = response.lists[0].id;
-    await this.mailchimp.post(`/lists/${listId}`, {
+    const response = await this.instance.get("/lists");
+    const listId = response.data.lists[0].id;
+    await this.instance.post(`/lists/${listId}`, {
       members: [{ email_address: email, status: "subscribed" }],
       update_existing: true,
     });
