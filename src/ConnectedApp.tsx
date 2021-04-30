@@ -15,7 +15,7 @@ export function ConnectedApp() {
         ),
       ]}
     >
-      <BrowserRouter>
+      <BrowserRouter basename="/privacy">
         <App />
       </BrowserRouter>
     </providersContext.Provider>
