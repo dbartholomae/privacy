@@ -16,14 +16,23 @@ describe("InquiryView", () => {
     });
   });
 
-  describe("when I enter my email", () => {
+  describe("when I enter an email with data", () => {
+    const email = "test@test.com";
     beforeEach(() => {
-      const email = "test@test.com";
+      ((mockProvider.fetchDetails as unknown) as jest.MockedFunction<any>).mockResolvedValue(
+        { email }
+      );
       enterEmail(email);
     });
 
-    it("shows the information tracked about me", async () => {
-      expect(screen.getByText(mockProvider.name)).toBeInTheDocument();
+    it("shows the provider's name", async () => {
+      expect(await screen.findByText(mockProvider.name)).toBeInTheDocument();
+    });
+
+    it("shows the data collected about me", async () => {
+      expect(
+        await screen.findByText(email, { exact: false })
+      ).toBeInTheDocument();
     });
   });
 });

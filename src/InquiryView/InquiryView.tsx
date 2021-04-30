@@ -1,24 +1,30 @@
-import React, { FunctionComponent, useContext, useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { Typography } from "@material-ui/core";
-import { providersContext } from "../providers/providersContext";
 import { EmailForm } from "../components/EmailForm/EmailForm";
 import { Page } from "../components/Page";
+import { useProviderData } from "../providers/useProviderData";
 
 export const InquiryView: FunctionComponent = () => {
   const [email, setEmail] = useState<string | null>(null);
-  const providers = useContext(providersContext);
+  const providerData = useProviderData(email);
   return (
     <Page>
       <Typography variant="h2" gutterBottom>
         Inquiries
       </Typography>
       <EmailForm onSetEmail={setEmail} />
-      {email != null &&
-        providers.map((provider) => (
+      {providerData.map((data) => (
+        <>
           <Typography variant="h3" gutterBottom>
-            {provider.name}
+            {data.name}
           </Typography>
-        ))}
+          <Typography variant="body1">
+            {data.data === null
+              ? "No data"
+              : JSON.stringify(data.data, null, 2)}
+          </Typography>
+        </>
+      ))}
     </Page>
   );
 };
