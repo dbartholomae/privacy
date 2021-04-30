@@ -17,14 +17,14 @@ describe("MailChimpProvider", () => {
     });
 
     it("shows information about a previously added email", async () => {
-      const email = "newsletter@bartholomae.name";
+      const email = "this-exists@bartholomae.name";
       await mailChimpProvider.trackEmail(email);
       const response = await mailChimpProvider.fetchDetails(email);
       expect(response!.id).toBeDefined();
     });
 
     it("does not return links", async () => {
-      const email = "newsletter@bartholomae.name";
+      const email = "this-exists@bartholomae.name";
       await mailChimpProvider.trackEmail(email);
       const response = await mailChimpProvider.fetchDetails(email);
       expect(response!._links).toBeUndefined();
@@ -33,7 +33,7 @@ describe("MailChimpProvider", () => {
 
   describe("#deleteMe", () => {
     it("deletes me", async () => {
-      const email = "newsletter@bartholomae.name";
+      const email = "delete-me@bartholomae.name";
       await mailChimpProvider.trackEmail(email);
       await mailChimpProvider.deleteMe(email);
       const response = await mailChimpProvider.fetchDetails(email);
