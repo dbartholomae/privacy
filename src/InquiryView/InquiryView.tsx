@@ -15,7 +15,7 @@ export const InquiryView: FunctionComponent = () => {
       <EmailForm onSetEmail={setEmail} />
       <Box m={1} style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
         {providerData.map((data) => (
-          <Card style={{ maxWidth: "600px" }}>
+          <Card key={data.name} style={{ maxWidth: "600px" }}>
             <CardContent>
               <Typography variant="h3" gutterBottom>
                 {data.name}
