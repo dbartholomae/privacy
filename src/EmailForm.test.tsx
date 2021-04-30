@@ -4,10 +4,13 @@ import userEvent from "@testing-library/user-event";
 import { EmailForm } from "./EmailForm";
 
 describe("EmailForm", () => {
-  it("allows to sign up an email", () => {
-    render(<EmailForm />);
+  it("allows to set an email", () => {
+    const setEmail = jest.fn();
+    render(<EmailForm onSetEmail={setEmail} />);
     const input = screen.getByLabelText("Email");
-    userEvent.type(input, "test@test.com");
+    const email = "test@test.com";
+    userEvent.type(input, email);
     userEvent.click(screen.getByRole("button", { name: "Sign up" }));
+    expect(setEmail).toHaveBeenCalledWith(email);
   });
 });
