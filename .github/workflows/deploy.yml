@@ -25,12 +25,14 @@ jobs:
         run: npm test
         env:
           REACT_APP_CORS_PROXY: ${{ secrets.REACT_APP_CORS_PROXY }}
-          REACT_APP_MAILCHIMP_API_KEY: ${{ secrets.REACT_APP_MAILCHIMP_API_KEY }}
+          REACT_APP_MAILCHIMP_API_KEY_PART_ONE: ${{ secrets.REACT_APP_MAILCHIMP_API_KEY_PART_ONE }}
+          REACT_APP_MAILCHIMP_API_KEY_PART_TWO: ${{ secrets.REACT_APP_MAILCHIMP_API_KEY_PART_TWO }}
       - name: Build page
         run: npm run build
         env:
           REACT_APP_CORS_PROXY: ${{ secrets.REACT_APP_CORS_PROXY }}
-          REACT_APP_MAILCHIMP_API_KEY: ${{ secrets.REACT_APP_MAILCHIMP_API_KEY }}
+          REACT_APP_MAILCHIMP_API_KEY_PART_ONE: ${{ secrets.REACT_APP_MAILCHIMP_API_KEY_PART_ONE }}
+          REACT_APP_MAILCHIMP_API_KEY_PART_TWO: ${{ secrets.REACT_APP_MAILCHIMP_API_KEY_PART_TWO }}
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
