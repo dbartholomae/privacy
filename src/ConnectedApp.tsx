@@ -2,6 +2,7 @@ import { App } from "./App";
 import React from "react";
 import { providersContext } from "./providers/providersContext";
 import { MailChimpProvider } from "./providers/MailChimpProvider";
+import { BrowserRouter } from "react-router-dom";
 
 export function ConnectedApp() {
   return (
@@ -13,7 +14,9 @@ export function ConnectedApp() {
         ),
       ]}
     >
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </providersContext.Provider>
   );
 }

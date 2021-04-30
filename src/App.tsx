@@ -1,19 +1,19 @@
 import "fontsource-roboto";
-import React, { useContext } from "react";
-import { Typography } from "@material-ui/core";
-import { providersContext } from "./providers/providersContext";
+import React from "react";
 import { TrackingView } from "./TrackingView";
+import { Redirect, Route, Switch } from "react-router-dom";
+import { InquiryView } from "./InquiryView";
 
 export function App() {
-  const providers = useContext(providersContext);
   return (
-    <>
-      <TrackingView />
-      {providers.map((provider) => (
-        <Typography variant="h3" gutterBottom>
-          {provider.name}
-        </Typography>
-      ))}
-    </>
+    <Switch>
+      <Route path="/track-me">
+        <TrackingView />
+      </Route>
+      <Route path="/inquiry">
+        <InquiryView />
+      </Route>
+      <Redirect to="/track-me" />
+    </Switch>
   );
 }

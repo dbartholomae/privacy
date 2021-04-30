@@ -1,26 +1,23 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { App } from "./App";
 import { providersContext } from "./providers/providersContext";
 import { MockProvider } from "./providers/MockProvider";
 import { Provider } from "./providers/Provider";
-import { MemoryRouter } from "react-router-dom";
+import { InquiryView } from "./InquiryView";
 
-describe("App", () => {
+describe("InquiryView", () => {
   let mockProvider: Provider;
 
   beforeEach(() => {
     mockProvider = new MockProvider();
     render(
-      <MemoryRouter>
-        <providersContext.Provider value={[mockProvider]}>
-          <App />
-        </providersContext.Provider>
-      </MemoryRouter>
+      <providersContext.Provider value={[mockProvider]}>
+        <InquiryView />
+      </providersContext.Provider>
     );
   });
 
-  it("shows a title", () => {
-    expect(screen.getByText("Data collection")).toBeInTheDocument();
+  it("shows the information tracked about me", async () => {
+    expect(screen.getByText("MockProvider")).toBeInTheDocument();
   });
 });
