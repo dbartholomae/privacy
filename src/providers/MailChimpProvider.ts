@@ -21,7 +21,12 @@ export class MailChimpProvider implements Provider {
 
   async fetchDetails(email: string): Promise<Record<string, string> | null> {
     const response = await this.instance.get(`/search-members?query=${email}`);
-    return response.data.exact_matches.members[0] ?? null;
+    const data = response.data.exact_matches.members[0];
+    if (data === undefined) {
+      return null;
+    }
+    delete data._links;
+    return data;
   }
 
   async trackEmail(email: string): Promise<void> {

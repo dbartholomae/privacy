@@ -22,5 +22,12 @@ describe("MailChimpProvider", () => {
       const response = await mailChimpProvider.fetchDetails(email);
       expect(response!.id).toBeDefined();
     });
+
+    it("does not return links", async () => {
+      const email = "newsletter@bartholomae.name";
+      await mailChimpProvider.trackEmail(email);
+      const response = await mailChimpProvider.fetchDetails(email);
+      expect(response!._links).toBeUndefined();
+    });
   });
 });
