@@ -15,6 +15,11 @@ export function App() {
         Data collection
       </Typography>
       <EmailForm onSetEmail={setEmail} />
+      {providers.map((provider) => (
+        <Typography variant="h3" gutterBottom>
+          {provider.name}
+        </Typography>
+      ))}
     </Container>
   );
 }

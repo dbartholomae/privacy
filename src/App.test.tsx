@@ -27,4 +27,8 @@ describe("App", () => {
     enterEmail(email);
     expect(mockProvider.trackEmail).toHaveBeenCalledWith(email);
   });
+
+  it("shows the information tracked about me", async () => {
+    expect(screen.getByText("MockProvider")).toBeInTheDocument();
+  });
 });

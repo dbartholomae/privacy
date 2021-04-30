@@ -2,6 +2,7 @@ import { Provider } from "./Provider";
 import Mailchimp from "mailchimp-api-v3";
 
 export class MailChimpProvider implements Provider {
+  name = "MailChimp";
   private mailchimp: Mailchimp;
 
   constructor(apiKey: string) {
