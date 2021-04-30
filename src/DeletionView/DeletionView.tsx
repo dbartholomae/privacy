@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext } from "react";
+import React, { FunctionComponent, useContext, useState } from "react";
 import { Typography } from "@material-ui/core";
 import { EmailForm } from "../components/EmailForm/EmailForm";
 import { Page } from "../components/Page";
@@ -6,8 +6,16 @@ import { providersContext } from "../providers/providersContext";
 
 export const DeletionView: FunctionComponent = () => {
   const providers = useContext(providersContext);
+  const [submitting, setSubmitting] = useState(false);
   function deleteEmail(email: string) {
-    providers.map(async (provider) => await provider.deleteMe(email));
+    async function run() {
+      setSubmitting(true);
+      await Promise.all(
+        providers.map(async (provider) => await provider.deleteMe(email))
+      );
+      setSubmitting(false);
+    }
+    run();
   }
   return (
     <Page>
@@ -15,6 +23,7 @@ export const DeletionView: FunctionComponent = () => {
         Inquiries
       </Typography>
       <EmailForm onSetEmail={deleteEmail} />
+      {submitting && "Submitting, please wait"}
     </Page>
   );
 };
