@@ -25,6 +25,9 @@ jobs:
         run: npm test
       - name: Build page
         run: npm run build
+        env:
+          REACT_APP_CORS_PROXY: ${{ secrets.REACT_APP_CORS_PROXY }}
+          REACT_APP_MAILCHIMP_API_KEY: ${{ secrets.REACT_APP_MAILCHIMP_API_KEY }}
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
