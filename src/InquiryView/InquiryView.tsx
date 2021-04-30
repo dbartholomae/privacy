@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
-import { Typography } from "@material-ui/core";
+import { Box, Card, CardContent, Typography } from "@material-ui/core";
 import { EmailForm } from "../components/EmailForm/EmailForm";
 import { Page } from "../components/Page";
 import { useProviderData } from "../providers/useProviderData";
@@ -13,18 +13,22 @@ export const InquiryView: FunctionComponent = () => {
         Inquiries
       </Typography>
       <EmailForm onSetEmail={setEmail} />
-      {providerData.map((data) => (
-        <>
-          <Typography variant="h3" gutterBottom>
-            {data.name}
-          </Typography>
-          <Typography variant="body1">
-            {data.data === null
-              ? "No data"
-              : JSON.stringify(data.data, null, 2)}
-          </Typography>
-        </>
-      ))}
+      <Box m={1} style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+        {providerData.map((data) => (
+          <Card style={{ maxWidth: "600px" }}>
+            <CardContent>
+              <Typography variant="h3" gutterBottom>
+                {data.name}
+              </Typography>
+              {data.data === null ? (
+                <Typography variant="body1">No data</Typography>
+              ) : (
+                <pre>{JSON.stringify(data.data, null, 2)}</pre>
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
     </Page>
   );
 };
