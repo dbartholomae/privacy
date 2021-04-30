@@ -23,7 +23,7 @@ export const EmailForm: FunctionComponent<Props> = ({ onSetEmail }) => {
         onChange={(event) => setEmail(event.target.value)}
       />
       <Button variant="contained" color="primary" type="submit">
-        Sign up
+        Confirm
       </Button>
     </form>
   );
