@@ -4,20 +4,25 @@ import { App } from "./App";
 import { enterEmail } from "./EmailForm.po";
 import { providersContext } from "./providers/providersContext";
 import { MockProvider } from "./providers/MockProvider";
+import { Provider } from "./providers/Provider";
 
 describe("App", () => {
-  it("shows a title", () => {
-    render(<App />);
-    expect(screen.getByText("Data collection")).toBeInTheDocument();
-  });
+  let mockProvider: Provider;
 
-  it("signs the email up to the providers", async () => {
-    const mockProvider = new MockProvider();
+  beforeEach(() => {
+    mockProvider = new MockProvider();
     render(
       <providersContext.Provider value={[mockProvider]}>
         <App />
       </providersContext.Provider>
     );
+  });
+
+  it("shows a title", () => {
+    expect(screen.getByText("Data collection")).toBeInTheDocument();
+  });
+
+  it("signs the email up to the providers", async () => {
     const email = "test@test.com";
     enterEmail(email);
     expect(mockProvider.trackEmail).toHaveBeenCalledWith(email);
